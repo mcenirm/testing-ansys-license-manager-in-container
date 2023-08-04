@@ -3,4 +3,5 @@ RUN dnf makecache
 RUN dnf install -q -y \
     procps-ng-3.3.17-11.el9.x86_64 \
     freetype-2.10.4-9.el9.x86_64 \
+    libSM-1.2.3-10.el9.x86_64 \
  && dnf clean all
