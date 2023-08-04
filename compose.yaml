@@ -12,17 +12,19 @@ services:
     volumes:
       - ansys_inc:/usr/ansys_inc
       - ./AnsysLicenseManager/:/AnsysLicenseManager/:ro,Z
-      - ./runtest.bash:/runtest.bash:ro,Z
-    command: ["/usr/bin/bash", "/runtest.bash"]
+      - ./run-install.bash:/run-install.bash:ro,Z
+    command: ["/usr/bin/bash", "/run-install.bash"]
+    healthcheck:
+      test: "test -f /run-install.completed"
 
   inspect:
     image: test-image
     depends_on:
       - _build
       - install
-    tty: true
     volumes:
       - ansys_inc:/usr/ansys_inc
+    command: ['echo', 'inspect available']
 
 volumes:
   ansys_inc:
