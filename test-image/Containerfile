@@ -1,0 +1,2 @@
+FROM registry.access.redhat.com/ubi9/ubi:9.1.0
+RUN dnf install -q -y procps-ng-3.3.17-11.el9.x86_64

@@ -1,0 +1,12 @@
+services:
+  test:
+    build:
+      context: test-image
+    volumes:
+      - ansys_inc:/usr/ansys_inc
+      - ./AnsysLicenseManager/:/AnsysLicenseManager/:ro,Z
+      - ./runtest.bash:/runtest.bash:ro,Z
+    command: ["/usr/bin/bash", "/runtest.bash"]
+
+volumes:
+  ansys_inc:
