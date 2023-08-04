@@ -7,7 +7,12 @@ services:
       - ./AnsysLicenseManager/:/AnsysLicenseManager/:ro,Z
       - ./run-install.bash:/run-install.bash:ro,Z
     working_dir: /AnsysLicenseManager/linx64
-    command: ["./INSTALL", "-silent", "-lm"]
+    command: |
+      bash -c '
+        ./INSTALL -silent -lm
+        head -v -n20 /usr/ansys_inc/*.err
+        tail -v -n10 /usr/ansys_inc/*.log
+      '
 
 volumes:
   ansys_inc:
