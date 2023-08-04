@@ -1,30 +1,13 @@
 services:
-  _build:
-    image: test-image
+  test:
     build:
       context: test-image
-    command: ['echo', 'build completed']
-
-  install:
-    image: test-image
-    depends_on:
-      - _build
     volumes:
       - ansys_inc:/usr/ansys_inc
       - ./AnsysLicenseManager/:/AnsysLicenseManager/:ro,Z
       - ./run-install.bash:/run-install.bash:ro,Z
-    command: ["/usr/bin/bash", "/run-install.bash"]
-    healthcheck:
-      test: "test -f /run-install.completed"
-
-  inspect:
-    image: test-image
-    depends_on:
-      - _build
-      - install
-    volumes:
-      - ansys_inc:/usr/ansys_inc
-    command: ['echo', 'inspect available']
+    working_dir: /AnsysLicenseManager/linx64
+    command: ["./INSTALL", "-silent", "-lm"]
 
 volumes:
   ansys_inc:
