@@ -10,7 +10,7 @@ services:
     working_dir: /AnsysLicenseManager/linx64
     command: |
       bash -c '
-        ./INSTALL -silent -lm
+        ./INSTALL -silent -LM
         head -v -n20 /ansys_inc/*.err /usr/ansys_inc/*.err
         tail -v -n10 /ansys_inc/*.log /usr/ansys_inc/*.log
       '
