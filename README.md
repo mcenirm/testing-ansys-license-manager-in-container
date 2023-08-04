@@ -1,0 +1,1 @@
+# testing-ansys-license-manager-in-container
