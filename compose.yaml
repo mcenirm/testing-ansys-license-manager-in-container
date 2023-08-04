@@ -1,12 +1,28 @@
 services:
-  test:
+  _build:
+    image: test-image
     build:
       context: test-image
+    command: ['echo', 'build completed']
+
+  install:
+    image: test-image
+    depends_on:
+      - _build
     volumes:
       - ansys_inc:/usr/ansys_inc
       - ./AnsysLicenseManager/:/AnsysLicenseManager/:ro,Z
       - ./runtest.bash:/runtest.bash:ro,Z
     command: ["/usr/bin/bash", "/runtest.bash"]
+
+  inspect:
+    image: test-image
+    depends_on:
+      - _build
+      - install
+    tty: true
+    volumes:
+      - ansys_inc:/usr/ansys_inc
 
 volumes:
   ansys_inc:
