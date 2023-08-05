@@ -3,7 +3,39 @@
 1. Download `AnsysLicenseManager.tgz` for 64-bit Linux
 2. Extract `AnsysLicenseManager.tgz` so that `AnsysLicenseManager/linx64/INSTALL` exists
 3. Start compose services (`podman-compose up` or `docker compose up`)
-4. Review output from INSTALL command
+4. Review output for any errors
+
+Expected (successful?) ending of `/ansys_inc/install.log`:
+
+```
+Installation Complete: Ddd Mmm DD HH:MM:SS YYYY
+<---------------------------------------<<<
+```
+
+Ending of `/ansys_inc/install_licconfig.log`:
+
+```
+YYYY/MM/DD HH:MM:SS  *** DETERMINING IF THE FLEXNET DONGLE DRIVER MANUAL STEPS ARE RELEVANT...
+YYYY/MM/DD HH:MM:SS  No license files were found. Therefore, the FlexNet dongle driver manual steps are not required.
+
+
+YYYY/MM/DD HH:MM:SS  *** Exiting the configuration with exit code 0 ***
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+```
+
+List changed/added/deleted files in the test container's file system:
+
+```shell
+podman diff ${PWD##*/}_test_1
+```
+
+Inspect the installation volumes with 
+
+```shell
+podman run --rm -it -v ${PWD##*/}_ansys_inc:/ansys_inc -v ${PWD##*/}_usr_ansys_inc:/usr/ansys_inc ${PWD##*/}_test bash
+```
 
 
 # notes
