@@ -6,7 +6,6 @@ services:
       - ansys_inc:/ansys_inc
       - usr_ansys_inc:/usr/ansys_inc
       - ./AnsysLicenseManager/:/AnsysLicenseManager/:ro,Z
-      - ./run-install.bash:/run-install.bash:ro,Z
     working_dir: /AnsysLicenseManager/linx64
     command: |
       bash -c '
