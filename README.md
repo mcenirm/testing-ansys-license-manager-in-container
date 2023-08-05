@@ -34,7 +34,7 @@ podman diff ${PWD##*/}_test_1
 Inspect the installation volumes with 
 
 ```shell
-podman run --rm -it -v ${PWD##*/}_ansys_inc:/ansys_inc -v ${PWD##*/}_usr_ansys_inc:/usr/ansys_inc ${PWD##*/}_test bash
+podman run --rm -it -v $PWD/scratch:/scratch:rw,Z -v ${PWD##*/}_ansys_inc:/ansys_inc -v ${PWD##*/}_usr_ansys_inc:/usr/ansys_inc ${PWD##*/}_test bash
 ```
 
 
