@@ -4,22 +4,19 @@ services:
       context: test-image
     volumes:
       - ansys_inc:/ansys_inc
-      - usr_ansys_inc:/usr/ansys_inc
       - ./AnsysLicenseManager/:/AnsysLicenseManager/:ro,Z
       - ./scratch:/scratch:rw,Z
     working_dir: /AnsysLicenseManager/linx64
     command: |
       bash -c '
         ./INSTALL -silent -LM
-        cp -v -t /scratch /ansys_inc/*.err /usr/ansys_inc/*.err 
-        cp -v -t /scratch /ansys_inc/*.log /usr/ansys_inc/*.log
+        cp -v -t /scratch /ansys_inc/*.err
+        cp -v -t /scratch /ansys_inc/*.log
         find /ansys_inc -ls > /scratch/listing.ansys_inc.txt
-        find /usr/ansys_inc -ls > /scratch/listing.usr_ansys_inc.txt
-        head -v -n20 /ansys_inc/*.err /usr/ansys_inc/*.err
-        tail -v -n10 /ansys_inc/*.log /usr/ansys_inc/*.log
+        head -v -n20 /ansys_inc/*.err
+        tail -v -n10 /ansys_inc/*.log
         (cd /ansys_inc/v232/licensingclient/linx64 && ./lmutil lmver lmutil)
       '
 
 volumes:
   ansys_inc:
-  usr_ansys_inc:
