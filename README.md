@@ -1,9 +1,53 @@
 # testing-ansys-license-manager-in-container
 
+
+## General preparation
+
 1. Download `AnsysLicenseManager.tgz` for 64-bit Linux
 2. Extract `AnsysLicenseManager.tgz` so that `AnsysLicenseManager/linx64/INSTALL` exists
-3. Start compose services (`podman-compose up` or `docker compose up`)
-4. Review output for any errors
+
+
+## RPM tests
+
+### Build RPM
+
+1. Build RPM
+
+   ```shell
+   podman-compose -f rpmbuild-compose.yaml up
+   ```
+
+2. Review RPM
+
+   ```shell
+   rpm -qp builtrpms/RPMS/x86_64/ansyslmd-2023.2-1.el9.x86_64.rpm -lv
+   ```
+
+3. TODO
+
+
+### Test RPM under systemd
+
+1. Build test image, with RPM installed
+
+   ```shell
+   podman-compose -f rpmtest-compose.yaml build
+   ```
+
+2. Run test
+
+   ```shell
+   podman-compose -f rpmtest-compose.yaml up
+   ```
+
+3. TODO
+
+
+## Original test
+
+1. Start compose services (`podman-compose -f test-compose.yaml up` or `docker compose -f test-compose.yaml up`)
+2. Review output for any errors
+3. Review outputs saved to `scratch/`
 
 Expected (successful?) ending of `/ansys_inc/install.log`:
 

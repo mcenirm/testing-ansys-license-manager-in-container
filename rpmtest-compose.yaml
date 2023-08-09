@@ -1,0 +1,8 @@
+services:
+  rpmtest:
+    build:
+      context: builtrpms
+      dockerfile: ../rpmtest-Containerfile
+      args:
+        ansyslmdrpm: ansyslmd-2023.2-1.el9.x86_64.rpm
+        ansyslmdrpmctxpath: RPMS/x86_64/
