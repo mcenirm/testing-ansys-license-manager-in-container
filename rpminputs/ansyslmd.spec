@@ -1,6 +1,6 @@
 Name:           ansyslmd
 Version:        2023.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        ANSYS, Inc. License Manager
 
 License:        Proprietary
@@ -22,6 +22,7 @@ ANSYS, Inc. License Manager and minimal FlexNet Publisher support files
 
 
 %prep
+# AnsysLicenseManager.tgz obtained from STK Engine for Linux 12.7.0
 sha256sum -c - <<EOF
 83ced9068633db638d7d420efadebc1258baabfe5615f12210060bf7ebb0ffb9  %{SOURCE0}
 EOF
@@ -78,7 +79,7 @@ mkdir -p %{buildroot}%{_sysconfdir}/%{name}
 mkdir -p %{buildroot}%{_sysconfdir}/sysconfig
 cat > %{buildroot}%{_sysconfdir}/sysconfig/%{name} <<EOF
 # Path to license file. Use ":" to separate multiple license files.
-LM_LICENSE_FILE=%{_sysconfdir}/%{name}/license.dat
+LM_LICENSE_FILE=%{_sysconfdir}/%{name}
 EOF
 
 
@@ -93,7 +94,7 @@ EOF
 %dir /run/%{name}/
 %{_unitdir}/%{name}-lmgrd.service
 %dir %{_sysconfdir}/%{name}/
-%attr(0644,root,root) %{_sysconfdir}/sysconfig/%{name}
+%config(noreplace) %attr(0644,root,root) %{_sysconfdir}/sysconfig/%{name}
 
 
 %pre

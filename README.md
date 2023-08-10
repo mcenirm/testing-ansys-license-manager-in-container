@@ -21,7 +21,8 @@
 2. Review RPM
 
    ```shell
-   rpm -qp builtrpms/x86_64/ansyslmd-2023.2-1.el9.x86_64.rpm -lv
+   rpm -qp builtrpms/x86_64/ansyslmd-2023.2-3.el9.x86_64.rpm -lv
+   rpm -qp builtrpms/x86_64/ansyslmd-2023.2-3.el9.x86_64.rpm -cv
    ```
 
 3. TODO
