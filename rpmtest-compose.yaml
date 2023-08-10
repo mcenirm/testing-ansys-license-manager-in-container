@@ -6,4 +6,4 @@ services:
       args:
         lsbrpm: bogus-lsb-core-4.1-1.el9.x86_64.rpm
         ansyslmdrpm: ansyslmd-2023.2-1.el9.x86_64.rpm
-        rpmctxpath: RPMS/x86_64/
+        rpmctxpath: x86_64/

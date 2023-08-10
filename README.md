@@ -5,6 +5,7 @@
 
 1. Download `AnsysLicenseManager.tgz` for 64-bit Linux
 2. Extract `AnsysLicenseManager.tgz` so that `AnsysLicenseManager/linx64/INSTALL` exists
+3. Move or copy `AnsysLicenseManager.tgz` to `rpminputs`
 
 
 ## RPM tests
@@ -20,7 +21,7 @@
 2. Review RPM
 
    ```shell
-   rpm -qp builtrpms/RPMS/x86_64/ansyslmd-2023.2-1.el9.x86_64.rpm -lv
+   rpm -qp builtrpms/x86_64/ansyslmd-2023.2-1.el9.x86_64.rpm -lv
    ```
 
 3. TODO

@@ -3,11 +3,13 @@ services:
     build:
       context: rpmbuild-image
     volumes:
-      - rpmbuild:/root/rpmbuild:rw,Z
-      - ./rpmspecs:/rpmspecs:ro,Z
-      - ./AnsysLicenseManager.tgz:/rpmsources/AnsysLicenseManager.tgz:ro,Z
-      - ./rpmspecs/ansyslmd.sysusers:/rpmsources/ansyslmd.sysusers:ro,Z
-      - ./builtrpms:/rpmoutputs:rw,Z
+      - build:/root/rpmbuild/BUILD:rw,Z
+      - buildroot:/root/rpmbuild/BUILDROOT:rw,Z
+      - ./rpminputs:/root/rpmbuild/SPECS:ro,Z
+      - ./rpminputs:/root/rpmbuild/SOURCES:ro,Z
+      - ./builtrpms:/root/rpmbuild/RPMS:rw,Z
+      - ./builtrpms:/root/rpmbuild/SRPMS:rw,Z
 
 volumes:
-  rpmbuild:
+  build:
+  buildroot:
