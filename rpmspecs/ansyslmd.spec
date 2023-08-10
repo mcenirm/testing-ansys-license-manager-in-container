@@ -5,11 +5,13 @@ Summary:        ANSYS, Inc. License Manager
 
 License:        Proprietary
 Source0:        AnsysLicenseManager.tgz
+Source1:        %{name}.sysusers
 NoSource:       0
 
 ExclusiveArch:  x86_64
 BuildRequires:  coreutils >= 8.32
-#BuildRequires:  systemd-rpm-macros
+BuildRequires:  systemd-rpm-macros
+%{?sysusers_requires_compat}
 
 Requires:       ld-lsb.so.3()(64bit)
 
@@ -57,7 +59,13 @@ rmdir AnsysLicenseManager/linx64/licserv
 rmdir AnsysLicenseManager/linx64
 rmdir AnsysLicenseManager
 
+install -p -D -m 0644 %{SOURCE1} %{buildroot}%{_sysusersdir}/%{name}.conf
+
+%pre
+%sysusers_create_compat %{SOURCE1}
+
 %files
+%{_sysusersdir}/%{name}.conf
 %license %attr(0644,root,root) /usr/ansys_inc/shared_files/licensing/linx64/LICENSE.TXT
 /ansys_inc
 %attr(0755,root,root) /usr/ansys_inc/shared_files/licensing/linx64/lmgrd
@@ -65,10 +73,10 @@ rmdir AnsysLicenseManager
 %attr(0755,root,root) /usr/ansys_inc/shared_files/licensing/linx64/lmutil
 
 #%%post
-#%%systemd_post ansyslmd-lmgrd.service
+#%%systemd_post %%{name}-lmgrd.service
 #% 
 #%%preun
-#%%systemd_preun ansyslmd-lmgrd.service
+#%%systemd_preun %%{name}-lmgrd.service
 #%
 #%%postun
-#%%systemd_postun_with_restart ansyslmd-lmgrd.service
+#%%systemd_postun_with_restart %%{name}-lmgrd.service

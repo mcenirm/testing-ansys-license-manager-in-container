@@ -6,6 +6,7 @@ services:
       - rpmbuild:/root/rpmbuild:rw,Z
       - ./rpmspecs:/rpmspecs:ro,Z
       - ./AnsysLicenseManager.tgz:/rpmsources/AnsysLicenseManager.tgz:ro,Z
+      - ./rpmspecs/ansyslmd.sysusers:/rpmsources/ansyslmd.sysusers:ro,Z
       - ./builtrpms:/rpmoutputs:rw,Z
 
 volumes:
