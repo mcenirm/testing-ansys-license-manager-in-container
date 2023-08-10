@@ -1,0 +1,16 @@
+[Unit]
+Description=ANSYS, Inc. License Manager
+After=network.target
+
+[Service]
+Type=simple
+User=ansyslmd
+WorkingDirectory=/run/ansyslmd
+EnvironmentFile=-/etc/sysconfig/ansyslmd.conf
+ExecStart=/usr/ansys_inc/shared_files/licensing/linx64/lmgrd -z
+SuccessExitStatus=15
+Restart=on-abnormal
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
