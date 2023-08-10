@@ -7,9 +7,11 @@ License:        Proprietary
 Source0:        AnsysLicenseManager.tgz
 NoSource:       0
 
+ExclusiveArch:  x86_64
 BuildRequires:  coreutils >= 8.32
 #BuildRequires:  systemd-rpm-macros
-#Requires:       
+
+Requires:       /lib64/ld-lsb.so.3
 
 %description
 ANSYS, Inc. License Manager and minimal FlexNet Publisher support files
