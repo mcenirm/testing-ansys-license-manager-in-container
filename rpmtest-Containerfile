@@ -11,3 +11,4 @@ RUN set -x && dnf -q -y install \
  && rm -f \
     /tmp/${lsbrpm} \
     /tmp/${ansyslmdrpm}
+RUN systemctl enable ansyslmd-lmgrd.service
