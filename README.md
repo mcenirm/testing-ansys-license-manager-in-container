@@ -14,7 +14,7 @@
 1. Build RPM
 
    ```shell
-   podman-compose -f rpmbuild-compose.yaml up
+   podman-compose -f rpmbuild-compose.yaml up --force-recreate
    ```
 
 2. Review RPM
@@ -34,13 +34,20 @@
    podman-compose -f rpmtest-compose.yaml build
    ```
 
-2. Run test
+2. Start test container
 
    ```shell
-   podman-compose -f rpmtest-compose.yaml up
+   podman-compose -f rpmtest-compose.yaml up -d
    ```
 
-3. TODO
+3. Inspect test container
+
+   ```shell
+   podman-compose -f rpmtest-compose.yaml exec rpmtest systemctl status
+   podman-compose -f rpmtest-compose.yaml exec rpmtest /usr/ansys_inc/shared_files/licensing/linx64/lmutil lmstat
+   ```
+
+4. TODO
 
 
 ## Original test
