@@ -1,6 +1,6 @@
 Name:           ansyslmd
 Version:        2023.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        ANSYS, Inc. License Manager
 
 License:        Proprietary
@@ -20,13 +20,16 @@ Requires:       ld-lsb.so.3()(64bit)
 %description
 ANSYS, Inc. License Manager and minimal FlexNet Publisher support files
 
+
 %prep
 sha256sum -c - <<EOF
 83ced9068633db638d7d420efadebc1258baabfe5615f12210060bf7ebb0ffb9  %{SOURCE0}
 EOF
 
+
 %build
 true
+
 
 %install
 
@@ -70,6 +73,15 @@ install -d -m 0755 %{buildroot}/run/%{name}/
 mkdir -p %{buildroot}%{_unitdir}
 install -p -D -m 0644 %{SOURCE3} %{buildroot}%{_unitdir}/%{name}-lmgrd.service
 
+mkdir -p %{buildroot}%{_sysconfdir}/%{name}
+
+mkdir -p %{buildroot}%{_sysconfdir}/sysconfig
+cat > %{buildroot}%{_sysconfdir}/sysconfig/%{name} <<EOF
+# Path to license file. Use ":" to separate multiple license files.
+LM_LICENSE_FILE=%{_sysconfdir}/%{name}/license.dat
+EOF
+
+
 %files
 %license %attr(0644,root,root) /usr/ansys_inc/shared_files/licensing/linx64/LICENSE.TXT
 /ansys_inc
@@ -80,17 +92,24 @@ install -p -D -m 0644 %{SOURCE3} %{buildroot}%{_unitdir}/%{name}-lmgrd.service
 %{_tmpfilesdir}/%{name}.conf
 %dir /run/%{name}/
 %{_unitdir}/%{name}-lmgrd.service
+%dir %{_sysconfdir}/%{name}/
+%attr(0644,root,root) %{_sysconfdir}/sysconfig/%{name}
+
 
 %pre
 %sysusers_create_compat %{SOURCE1}
 
+
 %post
 %systemd_post %{name}-lmgrd.service
+
 
 %preun
 %systemd_preun %{name}-lmgrd.service
 
+
 %postun
 %systemd_postun_with_restart %{name}-lmgrd.service
+
 
 %changelog
