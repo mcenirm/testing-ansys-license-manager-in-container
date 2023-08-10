@@ -14,7 +14,7 @@
 1. Build RPM
 
    ```shell
-   podman-compose -f rpmbuild-compose.yaml up --force-recreate
+   podman-compose -f rpmbuild-compose.yaml down -v ; podman-compose -f rpmbuild-compose.yaml up
    ```
 
 2. Review RPM

@@ -4,7 +4,7 @@ services:
       context: rpmbuild-image
     volumes:
       - rpmbuild:/root/rpmbuild:rw,Z
-      - ./ansyslmd.spec:/rpmspecs/ansyslmd.spec:ro,Z
+      - ./rpmspecs:/rpmspecs:ro,Z
       - ./AnsysLicenseManager.tgz:/rpmsources/AnsysLicenseManager.tgz:ro,Z
       - ./builtrpms:/rpmoutputs:rw,Z
 
