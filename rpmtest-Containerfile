@@ -1,7 +1,13 @@
 FROM registry.access.redhat.com/ubi9/ubi-init:9.1.0
+ARG lsbrpm
 ARG ansyslmdrpm
-ARG ansyslmdrpmctxpath
-COPY ${ansyslmdrpmctxpath}${ansyslmdrpm} /tmp/
-RUN set -x && dnf -q -y install /tmp/${ansyslmdrpm} \
+ARG rpmctxpath
+COPY ${rpmctxpath}${lsbrpm} /tmp/
+COPY ${rpmctxpath}${ansyslmdrpm} /tmp/
+RUN set -x && dnf -q -y install \
+    /tmp/${lsbrpm} \
+    /tmp/${ansyslmdrpm} \
  && dnf clean all \
- && rm -f /tmp/${ansyslmdrpm}
+ && rm -f \
+    /tmp/${lsbrpm} \
+    /tmp/${ansyslmdrpm}

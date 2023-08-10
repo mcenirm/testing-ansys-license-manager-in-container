@@ -11,7 +11,7 @@ ExclusiveArch:  x86_64
 BuildRequires:  coreutils >= 8.32
 #BuildRequires:  systemd-rpm-macros
 
-Requires:       /lib64/ld-lsb.so.3
+Requires:       ld-lsb.so.3()(64bit)
 
 %description
 ANSYS, Inc. License Manager and minimal FlexNet Publisher support files

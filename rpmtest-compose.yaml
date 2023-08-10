@@ -4,5 +4,6 @@ services:
       context: builtrpms
       dockerfile: ../rpmtest-Containerfile
       args:
+        lsbrpm: bogus-lsb-core-4.1-1.el9.x86_64.rpm
         ansyslmdrpm: ansyslmd-2023.2-1.el9.x86_64.rpm
-        ansyslmdrpmctxpath: RPMS/x86_64/
+        rpmctxpath: RPMS/x86_64/
