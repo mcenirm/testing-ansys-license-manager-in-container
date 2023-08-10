@@ -1,6 +1,6 @@
 Name:           bogus-lsb-core
 Version:        4.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Bogus Linux Standard Base
 License:        LicenseRef-Fedora-Public-Domain
 
