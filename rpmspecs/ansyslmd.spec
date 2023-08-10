@@ -6,6 +6,7 @@ Summary:        ANSYS, Inc. License Manager
 License:        Proprietary
 Source0:        AnsysLicenseManager.tgz
 Source1:        %{name}.sysusers
+Source2:        %{name}-tmpfiles.conf
 NoSource:       0
 
 ExclusiveArch:  x86_64
@@ -61,16 +62,22 @@ rmdir AnsysLicenseManager
 
 install -p -D -m 0644 %{SOURCE1} %{buildroot}%{_sysusersdir}/%{name}.conf
 
+mkdir -p %{buildroot}%{_tmpfilesdir}
+install -m 0644 %{SOURCE2} %{buildroot}%{_tmpfilesdir}/%{name}.conf
+install -d -m 0755 %{buildroot}/run/%{name}/
+
 %pre
 %sysusers_create_compat %{SOURCE1}
 
 %files
-%{_sysusersdir}/%{name}.conf
 %license %attr(0644,root,root) /usr/ansys_inc/shared_files/licensing/linx64/LICENSE.TXT
 /ansys_inc
 %attr(0755,root,root) /usr/ansys_inc/shared_files/licensing/linx64/lmgrd
 %attr(0755,root,root) /usr/ansys_inc/shared_files/licensing/linx64/ansyslmd
 %attr(0755,root,root) /usr/ansys_inc/shared_files/licensing/linx64/lmutil
+%{_sysusersdir}/%{name}.conf
+%{_tmpfilesdir}/%{name}.conf
+%dir /run/%{name}/
 
 #%%post
 #%%systemd_post %%{name}-lmgrd.service

@@ -5,6 +5,7 @@ rpmdev-setuptree
 
 cp -nv -t $HOME/rpmbuild/SPECS /rpmspecs/*.spec
 cp -nv -t $HOME/rpmbuild/SOURCES /rpmsources/*
+cp -nv -t $HOME/rpmbuild/SOURCES /rpmspecs/*
 
 for s in $HOME/rpmbuild/SPECS/*.spec
 do
