@@ -1,6 +1,6 @@
 Name:           ansyslmd
 Version:        2023.2
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        ANSYS, Inc. License Manager
 
 License:        Proprietary
